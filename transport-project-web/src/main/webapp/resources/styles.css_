@@ -1,0 +1,63 @@
+body {
+    background-color: #DDD;
+
+}
+
+/*h1 {*/
+   /*background-color: #EEE;*/
+  /*}*/
+
+#city {
+    padding: 10px;
+    background-color: #EEE;
+    height: 30px;
+}
+
+#delivery {
+    padding: 10px;
+    background-color: #EEE;
+    /* height : 100px */
+
+    clear: left; // +
+}
+
+#deliver-left {
+    margin: 0px;
+    background-color: #EEE;
+    display: inline-block;
+    width: 59%;
+    vertical-align: top;
+}
+
+#deliver-right {
+    margin: 0px;
+    background-color: #EEE;
+    display: inline-block;
+    width: 40%;
+    vertical-align: top;
+}
+
+#main {
+
+    padding: 10px;
+//margin: -10px;
+    clear: left;
+}
+
+#load {
+    margin: 0px;
+    background-color: #EEE;
+    display: inline-block;
+    width: 59%;
+    vertical-align: top;
+//padding: 10px;
+}
+
+#added {
+    margin: 0px;
+    background-color: #EEE;
+    display: inline-block;
+    width: 40%;
+    vertical-align: top;
+//padding: 10px;
+}

@@ -1,8 +1,8 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@include file="header.jsp" %>
 
-<jsp:include page="../GlobalHeader.jsp">
-    <jsp:param name="title" value="${errorCode}" />
-</jsp:include>
+<%--<jsp:include page="../GlobalHeader.jsp">--%>
+	<%--<jsp:param name="title" value="${errorCode}" />--%>
+<%--</jsp:include>--%>
 
 <div class="container">
 
@@ -26,4 +26,4 @@
 	
 </div>
 
-<jsp:include page="../GlobalFooter.jsp"/>
+<%@include file="footer.jsp" %>

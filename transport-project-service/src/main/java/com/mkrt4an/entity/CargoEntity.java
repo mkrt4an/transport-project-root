@@ -32,12 +32,12 @@ public class CargoEntity implements Serializable {
     private Integer status;
 
     @JsonIgnore
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "loading_rp_id")
     private RoutePointEntity loadingRoutePoint;
 
     @JsonIgnore
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "delivery_rp_id")
     private RoutePointEntity deliveryRoutePoint;
 

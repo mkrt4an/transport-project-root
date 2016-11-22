@@ -1,71 +1,90 @@
 package com.mkrt4an.dto;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 /**
  * Created by 123 on 15.11.2016.
  */
-public class CargoDTO {
-
-    @Override
-    public String toString() {
-        return "CargoDTO{" +
-                "id=" + number +
-                ", name='" + name + '\'' +
-                ", weight=" + weight +
-                '}';
-    }
-
-    String name;
-
-    Integer weight;
-
-    Integer number;
-
-    public CargoDTO() {}
-
+public class UserDTO {
 
     public String getName() {
         return name;
     }
 
-
     public void setName(String name) {
         this.name = name;
     }
 
-    public Integer getWeight() {
-        return weight;
+    public String getPassword() {
+
+        return password;
     }
 
-    public void setWeight(Integer weight) {
-        this.weight = weight;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public Integer getNumber() {
-        return number;
+
+
+    public Integer getDriverId() {
+        return driverId;
     }
 
-    public void setNumber(Integer id) {
-        this.number = id;
+    public void setDriverId(Integer driverId) {
+        this.driverId = driverId;
     }
 
+    private String name;
+
+    private String password;
+
+    @Override
+    public String toString() {
+        return "UserDTO{" +
+                "name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", driver=" + driver +
+                ", driverId=" + driverId +
+                '}';
+    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        CargoDTO cargoDTO = (CargoDTO) o;
+        UserDTO userDTO = (UserDTO) o;
 
-        if (name != null ? !name.equals(cargoDTO.name) : cargoDTO.name != null) return false;
-        return weight != null ? weight.equals(cargoDTO.weight) : cargoDTO.weight == null;
+        if (driver != userDTO.driver) return false;
+        if (name != null ? !name.equals(userDTO.name) : userDTO.name != null) return false;
+        if (password != null ? !password.equals(userDTO.password) : userDTO.password != null) return false;
+        return driverId != null ? driverId.equals(userDTO.driverId) : userDTO.driverId == null;
 
     }
 
     @Override
     public int hashCode() {
         int result = name != null ? name.hashCode() : 0;
-        result = 31 * result + (weight != null ? weight.hashCode() : 0);
+        result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + (driver ? 1 : 0);
+        result = 31 * result + (driverId != null ? driverId.hashCode() : 0);
         return result;
     }
+
+    public boolean isDriver() {
+        return driver;
+    }
+
+    public void setDriver(boolean driver) {
+        this.driver = driver;
+    }
+
+    private boolean driver;
+
+    private Integer driverId;
+
+    public UserDTO() {}
+
+
 
 }

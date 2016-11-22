@@ -11,39 +11,28 @@
 </head>
 <body>
 
+
+
 <header class="mainH">
     <hgroup>
         <span><h1>TransportProject Application</h1></span>
-        <span>${driver.firstName} ${driver.lastName}, <a href="/">Logout</a></span>
+        <span>${user.name}, <a href="/">Logout</a></span>
     </hgroup>
 </header>
 
-<h1>Driver info page</h1><br>
-<hr>
-<h1>Order id: ${order.id}</h1>
-<br>
-<hr>
-Driver list:
-<br>
-<c:forEach var="item" items="${order.driverList}">
-    <c:out value="${item.firstName}"/>
-    <c:out value="${item.lastName}"/>
-    <c:out value="id: ${item.id}"/>
-    <br/>
-</c:forEach>
-
-<hr>
-Truck regNumber: ${order.currentTruck.regNumber}
-<br>
-
-<hr>
-Route points:
-<br>
-    <c:forEach var="item" items="${order.routePointList}">
-        <c:out value = "${item.ordinal} - ${item.city.name}"/><br/>
-    </c:forEach>
-<hr>
+<nav>
+    <ul class="main-menu">
+        <li><a href="/driver/add">Add New Driver</a></li>
+        <li><a href="/truck/add">Add New Truck</a></li>
+        <li><a href="/cargo/add">Add New Cargo</a></li>
+        <li><a href="/order/add">Add New Order</a></li>
 
 
+        <li><a href="/driver/getAll">Get all Drivers</a></li>
+        <li><a href="/truck/getAll">Get all Trucks</a></li>
+        <li><a href="/cargo/getAll">Get all Cargoes</a></li>
+        <li><a href="/order/getAll">Get all Orders</a></li>
+    </ul>
+</nav>
 
-<%@include file="footer.jsp" %>
+<div>
