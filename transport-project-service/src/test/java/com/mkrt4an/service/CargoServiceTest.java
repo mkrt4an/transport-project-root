@@ -34,43 +34,38 @@ public class CargoServiceTest {
 
     @Test
     public void testAddNewCargoWithIntegerParameters() throws Exception {
-        setUp();
         CargoEntity cargoEntity = new CargoEntity("cargo", 123, 0);
         when(cargoDaoMock.createCargo(cargoEntity)).thenReturn(1);
 
-        Assert.assertEquals(cargoService.addNew("cargo", 123, 0) == 1, true);
+        Assert.assertEquals(Integer.valueOf(1), cargoService.addNew("cargo", 123, 0));
     }
 
     @Test
     public void testAddNewCargoWithStringParameters() throws Exception {
-        setUp();
         CargoEntity cargoEntity = new CargoEntity("cargo", 123, 0);
         when(cargoDaoMock.createCargo(cargoEntity)).thenReturn(1);
 
-        Assert.assertEquals(cargoService.addNew("cargo", 123, 0) == 1, true);
+        Assert.assertEquals(Integer.valueOf(1), cargoService.addNew("cargo", 123, 0));
     }
 
     @Test
     public void testCargoFindByStringId() throws Exception {
-        setUp();
         CargoEntity cargoEntity = new CargoEntity("cargo", 123, 0);
         when(cargoDaoMock.findCargoById(1)).thenReturn(cargoEntity);
 
-        Assert.assertEquals(cargoService.findById(1) == cargoEntity, true);
+        Assert.assertEquals(cargoEntity, cargoService.findById(1));
     }
 
     @Test
     public void testCargoFindByIntegerId() throws Exception {
-        setUp();
         CargoEntity cargoEntity = new CargoEntity("cargo", 123, 0);
         when(cargoDaoMock.findCargoById(1)).thenReturn(cargoEntity);
 
-        Assert.assertEquals(cargoService.findById("1") == cargoEntity, true);
+        Assert.assertEquals(cargoEntity, cargoService.findById("1"));
     }
 
     @Test
     public void testCargoFindAll() throws Exception {
-        setUp();
         CargoEntity cargoEntity1 = new CargoEntity("cargo1", 123, 0);
         CargoEntity cargoEntity2 = new CargoEntity("cargo2", 456, 1);
         List<CargoEntity> cargoEntityList = new ArrayList<>();
@@ -79,42 +74,42 @@ public class CargoServiceTest {
 
         when(cargoDaoMock.getAllCargo()).thenReturn(cargoEntityList);
 
-        Assert.assertEquals(cargoService.findAll() == cargoEntityList, true);
+        Assert.assertEquals(cargoEntityList, cargoService.findAll());
     }
 
     @Test
     public void testCargoDeleteById() throws Exception {
-        setUp();
         CargoEntity cargoEntity = new CargoEntity("cargo", 123, 0);
 
         when(cargoDaoMock.findCargoById(1)).thenReturn(cargoEntity);
         when(cargoDaoMock.deleteCargo(cargoEntity)).thenReturn(1);
 
-        Integer i = cargoService.deleteById("1");
-
-        Assert.assertEquals(i == 1, true);
+        Assert.assertEquals(Integer.valueOf(1), cargoService.deleteById("1"));
     }
 
     @Test
     public void testCargoUpdateWithCargoEntityParameter() throws Exception {
-        setUp();
         CargoEntity cargoEntity = new CargoEntity("cargo", 123, 0);
 
         when(cargoDaoMock.updateCargo(cargoEntity)).thenReturn(1);
 
-        Assert.assertEquals(cargoService.update(cargoEntity) == 1, true);
+        Assert.assertEquals(Integer.valueOf(1), cargoService.update(cargoEntity));
     }
 
     @Test
     public void testCargoUpdateWithStringParameters() throws Exception {
-        setUp();
         CargoEntity cargoEntity = new CargoEntity("cargo", 123, 0);
         cargoEntity.setId(1);
 
         when(cargoDaoMock.findCargoById(1)).thenReturn(cargoEntity);
         when(cargoDaoMock.updateCargo(cargoEntity)).thenReturn(1);
 
-        Assert.assertEquals(cargoService.update(cargoEntity.getId(), cargoEntity.getName(), cargoEntity.getWeight().toString(), cargoEntity.getStatus().toString()) == 1, true);
+        Integer id = cargoEntity.getId();
+        String name = cargoEntity.getName();
+        String weight = cargoEntity.getWeight().toString();
+        String status = cargoEntity.getStatus().toString();
+
+        Assert.assertEquals(Integer.valueOf(1), cargoService.update(id, name, weight, status));
     }
 
 }
