@@ -58,9 +58,9 @@ public class DriverService {
     }
 
     //Delete by id
-    public void deleteById(String id){
+    public Integer deleteById(String id){
 //        DriverDao driverDao = new DriverDao(getEntityManager());
-        driverDao.deleteDriver(driverDao.findDriverById(Integer.parseInt(id)));
+        return driverDao.deleteDriver(driverDao.findDriverById(Integer.parseInt(id)));
     }
 
 

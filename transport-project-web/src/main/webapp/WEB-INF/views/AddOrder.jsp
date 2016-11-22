@@ -38,11 +38,11 @@
             <br>
             <br>
             Name:&nbsp;&nbsp;
-            <input id="cargoName" type="text" required name="name" />
+            <input id="cargoName" type="text" required name="name"  title="name"/>
             <br>
             <br>
             Weight:
-            <input id="cargoWeight" type="number" required name="weight" />
+            <input id="cargoWeight" type="number" required name="weight"  title="weight"/>
             <br>
             <br>
             <input id="addCargo" type="submit" value="SAVE CARGO" />
@@ -114,17 +114,18 @@
 <hr>
 
 <div>
-    <input id="addRp" type="submit" value="SAVE ROUTEPOINT" name="ADD RP" />
+    <input id="addRp" type="submit" value="Save routpoint" name="ADD RP" />
 
-    <form action="/order/add/test">
-        <input id="ready" type="submit" value="SAVE ORDER" name="READY" />
-        <input id="orderText" type="text" value="SAVE ORDER" name="order" hidden/>
+    <form action="${pageContext.request.contextPath}/order/add/test">
+        <input id="ready" type="submit" value="Save order" name="READY" />
+        <hr>
+        <input id="orderText" type="text" value="SAVE ORDER" name="order" hidden title="save order"/>
     </form>
 
-    <input id="test" type="button" value="test" name="test" />
-    <input id="testck" class="ck2" type="checkbox" value="testck" name="testck" />
-    <input id="testck2" class="ck2" type="checkbox" value="testck" name="testck" />
-    <input id="testck3" class="ck2" type="checkbox" value="testck" name="testck" />
+    <%--<input id="test" type="button" value="test" name="test" />--%>
+    <%--<input id="testck" class="ck2" type="checkbox" value="testck" name="testck" />--%>
+    <%--<input id="testck2" class="ck2" type="checkbox" value="testck" name="testck" />--%>
+    <%--<input id="testck3" class="ck2" type="checkbox" value="testck" name="testck" />--%>
 
     <!-- <input id="testInput" type="text" value="text" name="text" /> -->
 </div>

@@ -64,7 +64,15 @@ public class RoutePointService {
     }
 
 
-
+    /**
+     * Delete Rp.
+     *
+     * @return Rp id
+     */
+    public Integer deleteById(Integer id) {
+        RoutePointEntity routePointEntity = routePointDao.findRoutePointById(id);
+        return routePointDao.deleteRoutePoint(routePointEntity);
+    }
 
     //////////////////////////////////////////////////////////
     public Integer AddRoutePoint(List<CargoEntity> cargoToLoad,

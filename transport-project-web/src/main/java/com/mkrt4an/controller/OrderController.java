@@ -57,7 +57,7 @@ public class OrderController extends HttpServlet {
         return "AddOrder";
     }
 
-    @Transactional
+//    @Transactional
     @RequestMapping(value = "/order/add/test", method = RequestMethod.GET)
     public ModelAndView add(Model model, @RequestParam("order") String order ) {
 

@@ -75,6 +75,7 @@ public class OrderService {
     }
 
     // Update order
+    @Transactional
     public void update(OrderEntity orderEntity) {
 //        OrderDao orderDao = new OrderDao(getEntityManager());
         orderDao.updateOrder(orderEntity);
@@ -240,17 +241,17 @@ public class OrderService {
      *
      * @return order id
      */
-    public void deleteById(Integer Id) {
-        OrderEntity orderEntity = orderDao.findOrderById(Id);
-        orderDao.deleteOrder(orderEntity);
+    public Integer deleteById(Integer id) {
+        OrderEntity orderEntity = orderDao.findOrderById(id);
+        return orderDao.deleteOrder(orderEntity);
     }
     /**
      * Delete order by id
-     * @param order id
+     * @param id order id
      */
-    public void deleteById(String Id) {
-        OrderEntity orderEntity = orderDao.findOrderById(Integer.parseInt(Id));
-        orderDao.deleteOrder(orderEntity);
+    public Integer deleteById(String id) {
+        OrderEntity orderEntity = orderDao.findOrderById(Integer.parseInt(id));
+        return orderDao.deleteOrder(orderEntity);
     }
 
 
@@ -274,6 +275,7 @@ public class OrderService {
      * @param orderDTO
      * @return order id
      */
+    @Transactional
     public Integer addOrderDTO(OrderDTO orderDTO) {
         //Create order entity
         OrderEntity orderEntity = new OrderEntity();

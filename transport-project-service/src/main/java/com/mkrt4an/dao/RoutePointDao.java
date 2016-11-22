@@ -15,7 +15,7 @@ import java.util.List;
 @Repository
 //@Scope(value = "prototype")   // TODO: 22.11.2016
 //@Transactional                // TODO: 22.11.2016
-@Transactional(propagation = Propagation.MANDATORY)
+//@Transactional(propagation = Propagation.MANDATORY) // TODO: 22.11.2016  
 public class RoutePointDao {
 
     @PersistenceContext//(unitName = "NewPersistenceUnit")
@@ -65,8 +65,9 @@ public class RoutePointDao {
     }
 
     //Delete
-    public void deleteRoutePoint(RoutePointEntity entity) {
-        em.remove(em.contains(entity) ? entity : em.merge(entity));
+    public Integer deleteRoutePoint(RoutePointEntity entity) {
+         em.remove(em.contains(entity) ? entity : em.merge(entity));
+        return entity.getId();
     }
 
 }

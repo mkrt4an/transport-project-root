@@ -76,9 +76,10 @@ public class CargoService {
     }
 
     //Delete by id
-    public void deleteById(String id){
+    public Integer deleteById(String id){
 //        CargoDao cargoDao = new CargoDao(getEntityManager());
-        cargoDao.deleteCargo(cargoDao.findCargoById(Integer.parseInt(id)));
+        CargoEntity cargoEntity = cargoDao.findCargoById(Integer.parseInt(id));
+        return cargoDao.deleteCargo(cargoEntity);
     }
 
     //Update

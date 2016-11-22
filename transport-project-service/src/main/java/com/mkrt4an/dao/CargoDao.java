@@ -15,7 +15,7 @@ import java.util.List;
 //@Transactional // TODO: 22.11.2016
 public class CargoDao {
 
-    @PersistenceContext(type = PersistenceContextType.EXTENDED)
+    @PersistenceContext//(type = PersistenceContextType.EXTENDED)// TODO: 22.11.2016
     private EntityManager em;
 
     public CargoDao() {
