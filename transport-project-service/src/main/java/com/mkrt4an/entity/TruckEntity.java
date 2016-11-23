@@ -50,9 +50,9 @@ public class TruckEntity implements Serializable {
     public TruckEntity() {
     }
 
-    public TruckEntity(Integer dutySize, Integer capasity, Integer status, String regNumber, CityEntity currentCity) {
+    public TruckEntity(Integer dutySize, Integer capacity, Integer status, String regNumber, CityEntity currentCity) {
         this.dutySize = dutySize;
-        this.capacity = capasity;
+        this.capacity = capacity;
         this.status = status;
         this.regNumber = regNumber;
         this.currentCity = currentCity;

@@ -184,7 +184,7 @@ public class RoutePointEntity implements Serializable {
     public String toString() {
         return "RoutePointEntity{" +
                 "id=" + id +
-                ", city=" + city.getId() + " " + city.getName() +
+                ", city=" + (city == null ? "null" : city.getId() + " " + city.getName()) +
                 ", cargoToLoadList=" + cargoToLoadList +
                 ", cargoToDeliverList=" + cargoToDeliverList +
                 ", ordinal=" + ordinal +

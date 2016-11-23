@@ -24,7 +24,7 @@ public class TruckService {
 //    private final DriverDao driverDao;
 
     @Autowired
-    public TruckService(CargoDao cargoDao, DriverDao driverDao, OrderDao orderDao, RoutePointDao routePointDao, TruckDao truckDao, CityDao cityDao) {
+    public TruckService(TruckDao truckDao, CityDao cityDao) {
 //        this.cargoDao = cargoDao;
 //        this.driverDao = driverDao;
 //        this.orderDao = orderDao;
@@ -34,10 +34,9 @@ public class TruckService {
     }
 
     //Add new
-    public Integer addNew(Integer dutySize, Integer capasity, Integer status, String regNumber, Integer cityId) {
-        TruckEntity truckEntity = new TruckEntity(dutySize, capasity, status, regNumber, cityDao.findCityById(cityId));
-        truckDao.createTruck(truckEntity);
-        return truckEntity.getId();
+    public Integer addNew(Integer dutySize, Integer capacity, Integer status, String regNumber, Integer cityId) {
+        TruckEntity truckEntity = new TruckEntity(dutySize, capacity, status, regNumber, cityDao.findCityById(cityId));
+        return truckDao.createTruck(truckEntity);
     }
 
     //Find by id
