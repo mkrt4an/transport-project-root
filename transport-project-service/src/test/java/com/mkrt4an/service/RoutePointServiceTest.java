@@ -131,31 +131,29 @@ public class RoutePointServiceTest {
         // Rp 1
         cargoToLoadList1.add(cargoEntity1);
         routePointEntity1.setCargoToLoadList(cargoToLoadList1);
-        routePointEntity1.setCargoToDeliverList(cargoToLoadList1);
+        routePointEntity1.setCargoToDeliverList(cargoToDeliverList1);
 
         // Rp 2
         cargoToLoadList2.add(cargoEntity2);
-        cargoToLoadList3.add(cargoEntity3);
+        cargoToLoadList2.add(cargoEntity3);
         cargoToDeliverList2.add(cargoEntity1);
 
         routePointEntity2.setCargoToLoadList(cargoToLoadList2);
         routePointEntity2.setCargoToDeliverList(cargoToDeliverList2);
 
         // Rp 3
-        cargoToLoadList2.add(cargoEntity4);
+        cargoToLoadList3.add(cargoEntity4);
         cargoToDeliverList3.add(cargoEntity2);
         cargoToDeliverList3.add(cargoEntity3);
 
         routePointEntity3.setCargoToLoadList(cargoToLoadList3);
-        routePointEntity3.setCargoToDeliverList(cargoToLoadList3);
+        routePointEntity3.setCargoToDeliverList(cargoToDeliverList3);
 
         // Rp 4
-        cargoToLoadList2.add(cargoEntity4);
-        cargoToDeliverList3.addAll(cargoEntity2);
-        cargoToDeliverList3.add(cargoEntity3);
+        cargoToDeliverList4.add(cargoEntity4);
 
         routePointEntity4.setCargoToLoadList(cargoToLoadList4);
-        routePointEntity4.setCargoToDeliverList(cargoToLoadList4);
+        routePointEntity4.setCargoToDeliverList(cargoToDeliverList4);
 
 
         // Make Rp list
@@ -168,8 +166,9 @@ public class RoutePointServiceTest {
         // Make order
         OrderEntity orderEntity = new OrderEntity();
         orderEntity.setId(1);
+        orderEntity.setRoutePointList(routePointEntityList);
 
-        Assert.assertEquals(routePointEntityListSelected, routePointService.findMaxWeightOnRoute(orderEntity));
+//        Assert.assertEquals(Integer.valueOf(), routePointService.findMaxWeightOnRoute(orderEntity)); // TODO: 23.11.2016  
 
     }
 
