@@ -5,15 +5,10 @@ import com.mkrt4an.entity.CargoEntity;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.internal.matchers.ArrayEquals;
-
-import javax.validation.constraints.AssertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
-import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -35,17 +30,10 @@ public class CargoServiceTest {
     @Test
     public void testAddNewCargoWithIntegerParameters() throws Exception {
         CargoEntity cargoEntity = new CargoEntity("cargo", 123, 0);
+
         when(cargoDaoMock.createCargo(cargoEntity)).thenReturn(1);
 
-        Assert.assertEquals(Integer.valueOf(1), cargoService.addNew("cargo", 123, 0));
-    }
-
-    @Test
-    public void testAddNewCargoWithStringParameters() throws Exception {
-        CargoEntity cargoEntity = new CargoEntity("cargo", 123, 0);
-        when(cargoDaoMock.createCargo(cargoEntity)).thenReturn(1);
-
-        Assert.assertEquals(Integer.valueOf(1), cargoService.addNew("cargo", 123, 0));
+        Assert.assertEquals(Integer.valueOf(1), cargoService.addNew("cargo", "123", "0"));
     }
 
     @Test

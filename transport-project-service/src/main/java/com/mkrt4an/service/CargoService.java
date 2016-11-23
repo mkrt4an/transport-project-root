@@ -5,10 +5,8 @@ import com.mkrt4an.entity.CargoEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.inject.Inject;
 import java.util.List;
 
-//import static com.mkrt4an.utils.EntityManagerHelper.getEntityManager;
 
 /**
  * Created by 123 on 02.10.2016.
@@ -28,56 +26,27 @@ public class CargoService {
     public Integer addNew(String name, String weight, String status) {
 
         CargoEntity cargoEntity = new CargoEntity(name, Integer.parseInt(weight), Integer.parseInt(status));
-        return cargoDao.createCargo(cargoEntity);
-    }
-
-    //Add new
-    public Integer addNew(String name, Integer weight, Integer status) {
-//        CargoDao cargoDao = new CargoDao(getEntityManager());
-        CargoEntity cargoEntity = new CargoEntity(name, weight, status);
 
         return cargoDao.createCargo(cargoEntity);
     }
-
-//    //Add new
-//    public Integer addNew(String name, Integer weight, Integer status,
-//                          Integer loadingRoutePoint,
-//                          Integer deliveryRoutePoint) {
-//
-////        CargoDao cargoDao = new CargoDao(getEntityManager());
-//        /////////////////////////////////////
-////        RoutePointDao routePointDao = new RoutePoint//Dao(getEntityManager());
-//
-//        CargoEntity cargoEntity = new CargoEntity(name, weight, status,
-//                routePointDao.findRoutePointById(loadingRoutePoint),
-//                routePointDao.findRoutePointById(deliveryRoutePoint)
-//        );
-//
-//        cargoDao.createCargo(cargoEntity);
-//        return cargoEntity.getId();
-//    }
 
     //Find by id
     public CargoEntity findById(String id) {
-//        CargoDao cargoDao = new CargoDao(getEntityManager());
         return  cargoDao.findCargoById(Integer.parseInt(id));
     }
 
     //Find by id
     public CargoEntity findById(Integer id) {
-//        CargoDao cargoDao = new CargoDao(getEntityManager());
         return  cargoDao.findCargoById(id);
     }
 
     //Find all
     public List<CargoEntity> findAll() {
-//        CargoDao cargoDao = new CargoDao(getEntityManager());
         return cargoDao.getAllCargo();
     }
 
     //Delete by id
     public Integer deleteById(String id){
-//        CargoDao cargoDao = new CargoDao(getEntityManager());
         CargoEntity cargoEntity = cargoDao.findCargoById(Integer.parseInt(id));
         return cargoDao.deleteCargo(cargoEntity);
     }
@@ -85,7 +54,6 @@ public class CargoService {
     //Update
     public Integer update(Integer id, String name, String weight, String status){
 
-//        CargoDao cargoDao = new CargoDao(getEntityManager());
         CargoEntity cargoEntity;
         cargoEntity = cargoDao.findCargoById(id);
 
@@ -100,7 +68,4 @@ public class CargoService {
     public Integer update(CargoEntity cargoEntity){
         return cargoDao.updateCargo(cargoEntity);
     }
-
-
-
 }

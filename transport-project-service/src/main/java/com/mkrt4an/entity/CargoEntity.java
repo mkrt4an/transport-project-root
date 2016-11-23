@@ -41,8 +41,6 @@ public class CargoEntity implements Serializable {
     @JoinColumn(name = "delivery_rp_id")
     private RoutePointEntity deliveryRoutePoint;
 
-//    @Column(name = "number", nullable = false)
-//    private Integer number;
 
     // Constructors
     public CargoEntity() {
@@ -118,12 +116,6 @@ public class CargoEntity implements Serializable {
         this.loadingRoutePoint = loadingRoutePoint;
     }
 
-//    public Integer getNumber() {
-//        return number;
-//    }
-//    public void setNumber(Integer number) {
-//        this.number = number;
-//    }
 
     @Override
     public boolean equals(Object o) {

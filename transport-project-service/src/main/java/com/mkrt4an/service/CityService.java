@@ -6,7 +6,6 @@ import com.mkrt4an.entity.OrderEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.inject.Inject;
 import java.util.List;
 
 //import static com.mkrt4an.utils.EntityManagerHelper.getEntityManager;
@@ -25,7 +24,6 @@ public class CityService {
      * Find all orders
      */
     public List<CityEntity> findAll() {
-//        CityDao cityDao = new CityDao(getEntityManager());
         return cityDao.getAllCities();
     }
 
@@ -33,7 +31,6 @@ public class CityService {
      * Find by id
      */
     public CityEntity findById(String id) {
-//        CityDao cityDao = new CityDao(getEntityManager());
         return cityDao.findCityById(Integer.parseInt(id));
     }
 
@@ -41,7 +38,6 @@ public class CityService {
      * Find by id
      */
     public CityEntity findById(Integer id) {
-//        CityDao cityDao = new CityDao(getEntityManager());
         return cityDao.findCityById(id);
     }
 
@@ -70,7 +66,6 @@ public class CityService {
         }
 
         return Math.round(distance * 100) / 100.0d;
-
     }
 
     /**
@@ -79,6 +74,8 @@ public class CityService {
     public Double calcOrderTime(OrderEntity orderEntity) {
         final float AVERAGE_SPEED = 60f;
 
-        return Math.round((double) calcOrderDistance(orderEntity) / AVERAGE_SPEED * 100) / 100.0d;
+        Double distanceMeteres = calcOrderDistance(orderEntity) * 1000;
+
+        return Math.round(distanceMeteres / AVERAGE_SPEED * 100) / 100.0d;
     }
 }

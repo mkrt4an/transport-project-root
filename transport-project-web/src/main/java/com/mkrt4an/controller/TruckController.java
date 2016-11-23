@@ -30,7 +30,7 @@ public class TruckController extends HttpServlet {
     }
 
     @RequestMapping(value = {"/truck/update", "/truck/add"}, method = RequestMethod.GET)
-    public String AddOrUpdateTruck(Model model, @RequestParam(value = "id", required = false) Integer id) {
+    public String AddOrUpdateTruck(Model model, @RequestParam(value = "id", required = false) String id) {
 
         if (id != null) {
             TruckEntity truckEntity = truckService.findById(id);
