@@ -3,6 +3,7 @@ package com.mkrt4an.rest;
 import com.mkrt4an.entity.CargoEntity;
 import com.mkrt4an.entity.DriverEntity;
 import com.mkrt4an.entity.OrderEntity;
+import com.mkrt4an.exception.TransportProjectException;
 import com.mkrt4an.service.CargoService;
 import com.mkrt4an.service.DriverService;
 import com.mkrt4an.service.OrderService;
@@ -12,7 +13,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.inject.Inject;
 import java.util.List;
 
 @RestController
@@ -82,8 +82,8 @@ public class RestService {
 
 
     @RequestMapping(value = "/rest/order/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<OrderEntity> updateOrderr(@PathVariable("id") Integer id,
-                                                    @RequestParam("status") Integer status) {
+    public ResponseEntity<OrderEntity> updateOrder(@PathVariable("id") Integer id,
+                                                    @RequestParam("status") Integer status) throws TransportProjectException {
 
         System.out.println("id = " + id + '\n' + "status = " + status);
 

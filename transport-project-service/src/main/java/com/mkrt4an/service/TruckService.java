@@ -6,6 +6,7 @@ import com.mkrt4an.entity.TruckEntity;
 import com.mkrt4an.exception.ServiceValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -65,6 +66,7 @@ public class TruckService {
 
 
     //Add new
+    @Transactional
     public Integer addNew(Integer dutySize, Integer capacity, Integer status, String regNumber, Integer cityId) {
         TruckEntity truckEntity = new TruckEntity(dutySize, capacity, status, regNumber, cityDao.findCityById(cityId));
         return truckDao.createTruck(truckEntity);

@@ -4,6 +4,7 @@ import com.mkrt4an.dao.CityDao;
 import com.mkrt4an.dao.DriverDao;
 import com.mkrt4an.entity.DriverEntity;
 import com.mkrt4an.exception.ServiceValidationException;
+import com.mkrt4an.exception.TransportProjectException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,7 +32,7 @@ public class DriverService {
      * @return Doesn't return anything -- throws exception if failed.
      * @throws ServiceValidationException
      */
-    private void validateDriverForEmptyFields(DriverEntity driverEntity) throws ServiceValidationException {
+    private void validateDriver(DriverEntity driverEntity) throws ServiceValidationException {
         if (driverEntity.getFirstName() == null || driverEntity.getFirstName().isEmpty()) {
             throw new ServiceValidationException("FirstName is not set or empty.");
 
@@ -51,8 +52,9 @@ public class DriverService {
 
 
     //Add new
-    public Integer addNew(String firstName, String lastName, Integer workedHours, Integer status, Integer cityId) {
+    public Integer addNew(String firstName, String lastName, Integer workedHours, Integer status, Integer cityId) throws TransportProjectException{
         DriverEntity driverEntity = new DriverEntity(firstName, lastName, workedHours, status, cityDao.findCityById(cityId));
+        validateDriver(driverEntity);
         return driverDao.createDriver(driverEntity);
     }
 

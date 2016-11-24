@@ -84,7 +84,7 @@ public class OrderController extends HttpServlet {
 
 
     @RequestMapping(value = "/order/add/set-truck", method = RequestMethod.GET)
-    public ModelAndView setTruckToOrder(Model model, @RequestParam("id") String orderId ) {
+    public ModelAndView setTruckToOrder(Model model, @RequestParam("id") String orderId ) throws TransportProjectException {
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("AddOrderStepTwo");
@@ -117,7 +117,7 @@ public class OrderController extends HttpServlet {
     public ModelAndView setDriverToOrderConfirm(Model model,
                                                @RequestParam("truckId") String truckId,
                                                @RequestParam("orderId") String orderId,
-                                               @RequestParam("driverId") String[] driverIdList){
+                                               @RequestParam("driverId") String[] driverIdList) throws  TransportProjectException {
 
         OrderEntity orderEntity = orderService.findById(orderId);
 

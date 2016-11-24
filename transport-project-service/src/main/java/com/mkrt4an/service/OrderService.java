@@ -13,10 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @Service
@@ -79,8 +76,8 @@ public class OrderService {
 
     // Update order
     @Transactional
-    public void update(OrderEntity orderEntity) {
-//        OrderDao orderDao = new OrderDao(getEntityManager());
+    public void update(OrderEntity orderEntity) throws TransportProjectException{
+        validateOrderForDriverList(orderEntity);
         orderDao.updateOrder(orderEntity);
     }
 
@@ -92,54 +89,48 @@ public class OrderService {
 
 
     //Get list of truck avaible for this order
-    public List<TruckEntity> getSuitableTruckList(OrderEntity orderEntity)
-//            throws NoSuitableTruckException
-    {
-//        RoutePointService routePointService = new RoutePointService();
-
-//        TruckDao truckDao = new TruckDao(getEntityManager());
+    public List<TruckEntity> getSuitableTruckList(OrderEntity orderEntity) throws TransportProjectException {
 
         List<TruckEntity> suitableTrucks = new ArrayList<TruckEntity>();
-
         List<TruckEntity> allTrucks = truckDao.getAllTrucks();
 
         for (TruckEntity truckEntity : allTrucks) {
             if ((routePointService.findMaxWeightOnRoute(orderEntity) < truckEntity.getCapacity()) &&
-                    truckEntity.getStatus() == 1
-                    //&&
-                   // truckEntity.getOrders() == null
+                    truckEntity.getStatus() == 1 // ok
+                    &&
+                    truckEntity.getOrders().isEmpty() //have no orders
             ) {
                 suitableTrucks.add(truckEntity);
             }
         }
 
-        System.out.println();
+        if(suitableTrucks.isEmpty()) {
+            throw new ServiceValidationException(" No suitable truck found for this order. Try later");}
         return suitableTrucks;
-//        return truckDao.getAllTrucks();
     }
 
 
     // Get driver list suitable for this order
     public List<DriverEntity> getSuitableDriverList(OrderEntity orderEntity) throws TransportProjectException {
 //        CityService cityService = new CityService(); TODO: 22.11.2016
-//        DriverDao driverDao = new DriverDao(getEntityManager());
 
         List<DriverEntity> suitableDrivetList = new ArrayList<DriverEntity>();
         List<DriverEntity> driverEntityList = driverDao.getAllDrivers();
 
         for (DriverEntity driverEntity : driverEntityList) {
-            if (   true /// TODO: 16.11.2016  
+            if (
+                    true /// TODO: 16.11.2016
                     //(cityService.calcOrderTime(orderEntity) + driverEntity.getWorkedHours()) <= 176 &&
                     //driverEntity.getOrder() == null &&
                     //orderEntity.getCurrentTruck().getDutySize() > suitableDrivetList.size() &&
-                    //driverEntity.getCurrentCity() == orderEntity.getCurrentTruck().getCurrentCity()
+//                    driverEntity.getCurrentCity().equals(orderEntity.getCurrentTruck().getCurrentCity())
                     ) {
                 suitableDrivetList.add(driverEntity);
 //                driverEntity.setCurrentTruck(orderEntity.getCurrentTruck()); //TODO
             }
         }
 
-        if(suitableDrivetList == null || suitableDrivetList.isEmpty()) {
+        if(suitableDrivetList.isEmpty()) {
             throw new ServiceValidationException(" No suitable drivers found for this order.");}
         return suitableDrivetList;
     }
@@ -190,6 +181,29 @@ public class OrderService {
 
         if(!cargoLoadList.containsAll(cargoDeliverList)) {
             throw new ServiceValidationException("Not all cargo will be delivered.");
+        }
+    }
+
+    /**
+     * Check if order has empty fields that should not be empty.
+     * @param orderEntity {@link OrderEntity}
+     * @return Doesn't return anything -- throws exception if failed.
+     * @throws ServiceValidationException
+     */
+    private void validateOrderForDriverList(OrderEntity orderEntity) throws ServiceValidationException {
+
+        if (orderEntity.getDriverList() == null || orderEntity.getDriverList().isEmpty()) {
+            throw new ServiceValidationException("Driver list is not set or empty.");
+        }
+
+        if(orderEntity.getDriverList().size() == 1) {return;}
+
+        List<DriverEntity> driverEntityList = orderEntity.getDriverList();
+
+        for(DriverEntity driverEntity : driverEntityList) {
+            if (Collections.frequency(driverEntityList, driverEntity) >= 2) {
+                throw new ServiceValidationException("Driver list contain same driver.");
+            }
         }
     }
 

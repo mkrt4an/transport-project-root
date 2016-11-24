@@ -54,7 +54,7 @@
         <%--</c:forEach>--%>
         <%--</select><br><br>--%>
 
-        <input type="submit" name="update" value="submit"/>
+        <input type="submit" name="update" value="Submit"/>
         <input type="button" name="Cancel" value="Back" onclick="location.href='/driver/getAll'"/>
     </fieldset>
 </form>

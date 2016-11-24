@@ -34,7 +34,7 @@
 <div id="main2">
     <div id="main">
         <div id="load">
-            New load
+            New load:
             <br>
             <br>
             Name:&nbsp;&nbsp;
@@ -45,11 +45,11 @@
             <input id="cargoWeight" type="number" required name="weight"  title="weight"/>
             <br>
             <br>
-            <input id="addCargo" type="submit" value="SAVE CARGO" />
+            <input id="addCargo" type="submit" value="Save cargo" />
 
         </div>
         <div id="added">
-            added
+            Added cargoes:
             <br>
             <br>
             <table id="loadTable" border="1px">
@@ -69,7 +69,7 @@
 
 <div id="delivery">
     <div id="deliver-left">
-        avilable for delivery
+        Avilable for delivery:
         <br>
         <br>
         <table id="deliverTable" border=1px>
@@ -116,9 +116,9 @@
 <div>
     <input id="addRp" type="submit" value="Save routpoint" name="ADD RP" />
 
+    <hr>
     <form action="${pageContext.request.contextPath}/order/add/test">
         <input id="ready" type="submit" value="Save order" name="READY" />
-        <hr>
         <input id="orderText" type="text" value="SAVE ORDER" name="order" hidden title="save order"/>
     </form>
 
@@ -130,7 +130,8 @@
     <!-- <input id="testInput" type="text" value="text" name="text" /> -->
 </div>
 
-<div id="testDiv"></div>
+<%--<div id="testDiv"></div>--%>
+<%@include file="footer.jsp" %>
     
     
     

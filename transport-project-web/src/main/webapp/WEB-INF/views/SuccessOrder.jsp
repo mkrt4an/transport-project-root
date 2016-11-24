@@ -1,6 +1,6 @@
 <%@include file="header.jsp" %>
 
-<h1>Order successfully created!</h1><br>
+<h1>Order draft successfully created! Assing truck and driver</h1><br>
 
 <table border=1 width=1 cellspacing=2 cellpadding=2>
     <thead>

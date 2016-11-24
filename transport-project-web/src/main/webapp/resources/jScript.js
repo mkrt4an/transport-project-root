@@ -327,7 +327,8 @@ $(function() {
 // Disable SAVE ORDER button if order not ready
 //========================================
 setInterval(function () {
-    if (!$('#cityList').val() ||
+    if (
+        // !$('#cityList').val() ||
         ($ordinal == 0) ||
         //($cargoCount!=0))
         $deliverListToNextPage.length != 0)

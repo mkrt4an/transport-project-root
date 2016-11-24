@@ -35,7 +35,7 @@
         </filter>
     </appender>
 
-    <appender name="LOGIWEB-LOG-WARN-FILE-APPENDER" class="org.apache.log4j.FileAppender">
+    <appender name="LOG-WARN-FILE-APPENDER" class="org.apache.log4j.FileAppender">
         <param name="file" value="C:/wildfly-10.1.0.Final/standalone/log/error.log"/>
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="%d{ISO8601} [%5p] %m at %l%n"/>
@@ -45,7 +45,7 @@
         </filter>
     </appender>
 
-    <appender name="LOGIWEB-LOG-INFO-FILE-APPENDER" class="org.apache.log4j.FileAppender">
+    <appender name="LOG-INFO-FILE-APPENDER" class="org.apache.log4j.FileAppender">
         <param name="file" value="C:/wildfly-10.1.0.Final/standalone/log/info.log"/>
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="%d{ISO8601} [%5p] %m at %l%n"/>
@@ -56,7 +56,7 @@
         </filter>
     </appender>
 
-    <appender name="LOGIWEB-LOG-DEBUG-FILE-APPENDER" class="org.apache.log4j.FileAppender">
+    <appender name="LOG-DEBUG-FILE-APPENDER" class="org.apache.log4j.FileAppender">
         <param name="file" value="C:/wildfly-10.1.0.Final/standalone/log/debug.log"/>
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="%d{ISO8601} [%5p] %m at %l%n"/>
@@ -77,17 +77,22 @@
         </filter>
     </appender>
 
-    <category name="com.tsystems.javaschool.logiweb">
-        <appender-ref ref="LOGIWEB-LOG-WARN-FILE-APPENDER"/>
-        <appender-ref ref="LOGIWEB-LOG-INFO-FILE-APPENDER"/>
-        <appender-ref ref="LOGIWEB-LOG-DEBUG-FILE-APPENDER"/>
-    </category>
+    <!--<category name="com.mkrt4an">-->
+        <!--<appender-ref ref="LOGIWEB-LOG-WARN-FILE-APPENDER"/>-->
+        <!--<appender-ref ref="LOGIWEB-LOG-INFO-FILE-APPENDER"/>-->
+        <!--<appender-ref ref="LOGIWEB-LOG-DEBUG-FILE-APPENDER"/>-->
+    <!--</category>-->
 
     <root>
-        <priority value="INFO"/>
-        <appender-ref ref="CONSOLE-WARN"/>
+        <!--<priority value="INFO"/>-->
+        <priority value="ALL"/>
         <appender-ref ref="CONSOLE-DEBUG"/>
+        <appender-ref ref="CONSOLE-WARN"/>
         <appender-ref ref="LOG-FILE-APPENDER"/>
+        <appender-ref ref="LOG-WARN-FILE-APPENDER"/>
+        <appender-ref ref="LOG-INFO-FILE-APPENDER"/>
+        <appender-ref ref="LOG-DEBUG-FILE-APPENDER"/>
+        <appender-ref ref="SQL-LOG-ALL-FILE-APPENDER"/>
     </root>
 
 </log4j:configuration>

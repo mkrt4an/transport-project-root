@@ -5,6 +5,7 @@ package com.mkrt4an.controller;
  */
 
 import com.mkrt4an.entity.DriverEntity;
+import com.mkrt4an.exception.TransportProjectException;
 import com.mkrt4an.service.DriverService;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -52,7 +53,7 @@ public class DriverController extends HttpServlet {
                                  @RequestParam("lastName") String lastName,
                                  @RequestParam("workedHours") Integer workedHours,
                                  @RequestParam("status") Integer status,
-                                 @RequestParam("city") Integer cityId) {
+                                 @RequestParam("city") Integer cityId) throws TransportProjectException{
 
         if (id == null) {
             driverService.addNew(firstName, lastName, workedHours, status, cityId);

@@ -4,6 +4,7 @@ import com.mkrt4an.dao.CargoDao;
 import com.mkrt4an.entity.CargoEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -65,6 +66,7 @@ public class CargoService {
     }
 
     //Update
+    @Transactional
     public Integer update(CargoEntity cargoEntity){
         return cargoDao.updateCargo(cargoEntity);
     }
