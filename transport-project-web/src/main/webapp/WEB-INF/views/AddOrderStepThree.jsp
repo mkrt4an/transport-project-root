@@ -73,8 +73,8 @@
         <%--</c:forEach>--%>
     <%--</select><br><br>--%>
 
-<c:out value="${driverAll}"/><br><br>
-<c:out value="${currentTruckDutySize}"/><br><br>
+<%--<c:out value="${driverAll}"/><br><br>--%>
+<%--<c:out value="${currentTruckDutySize}"/><br><br>--%>
 
 
     <c:forEach begin ="1" end="${currentTruckDutySize}" varStatus="count">

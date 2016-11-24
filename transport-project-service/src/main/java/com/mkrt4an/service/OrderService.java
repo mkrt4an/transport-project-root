@@ -186,9 +186,15 @@ public class OrderService {
 
         List<DriverEntity> driverEntityList = orderEntity.getDriverList();
 
+        DriverEntity previousDriverEntity = null;
         for(DriverEntity driverEntity : driverEntityList) {
+            if (driverEntity.equals(previousDriverEntity)) {
+                throw new ServiceValidationException("Driver list contain same driver. From driverEntity.equals(previousDriverEntity)");
+            }
+            previousDriverEntity = driverEntity;
+
             if (Collections.frequency(driverEntityList, driverEntity) >= 2) {
-                throw new ServiceValidationException("Driver list contain same driver.");
+                throw new ServiceValidationException("Driver list contain same driver. From Collections.frequency");
             }
         }
     }
