@@ -153,29 +153,47 @@ public class OrderService {
      * @return Doesn't return anything -- throws exception if failed.
      * @throws ServiceValidationException
      */
-    private void validateOrder(OrderEntity orderEntity) throws ServiceValidationException {
+    private void validateOrderForRpList(OrderEntity orderEntity) throws ServiceValidationException {
 
         if (orderEntity.getRoutePointList() == null || orderEntity.getRoutePointList().isEmpty()) {
             throw new ServiceValidationException("Route point list is not set or empty.");
         }
 
-
-
         List<RoutePointEntity> routePointEntityList = orderEntity.getRoutePointList();
-        
+
         int previousCityId = 0;
+        List<CargoEntity> cargoLoadList = new ArrayList<>();
+        List<CargoEntity> cargoDeliverList = new ArrayList<>();
         for(RoutePointEntity rp : routePointEntityList) {
             if (rp.getCity() == null) {
                 throw new ServiceValidationException("City is not set in Rp.");
             }
             if (rp.getCity().getId() == previousCityId) {
-                throw new ServiceValidationException("City is the same as in previous Rp. Two same cities in row");
+                throw new ServiceValidationException("City is the same as in previous Rp. Two same cities in row.");
+            }
+            previousCityId = rp.getCity().getId();
+
+            if (rp.getCargoToLoadList() == null) {
+                throw new ServiceValidationException("Cargo load list is not set.");
+            }
+
+            if (rp.getCargoToDeliverList() == null) {
+                throw new ServiceValidationException("Cargo delivery list is not set.");
+            }
+
+            for(CargoEntity cargoEntity : rp.getCargoToLoadList()){
+                if (cargoEntity == null) {throw new ServiceValidationException("Cargo is not set in load list.");}
+                cargoLoadList.add(cargoEntity);
+            }
+            for(CargoEntity cargoEntity : rp.getCargoToDeliverList()){
+                if (cargoEntity == null) {throw new ServiceValidationException("Cargo is not set in deliver list.");}
+                cargoDeliverList.add(cargoEntity);
             }
         }
 
-
-
-
+        if(!cargoLoadList.containsAll(cargoDeliverList)) {
+            throw new ServiceValidationException("Not all cargo will be delivered.");
+        }
     }
 
     /**
