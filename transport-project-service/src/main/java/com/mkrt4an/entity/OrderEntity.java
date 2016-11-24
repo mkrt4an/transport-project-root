@@ -44,8 +44,17 @@ public class OrderEntity implements Serializable {
     private TruckEntity currentTruck;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "startDate", nullable = true)
+    @Column(name = "start_date", nullable = true)
     private Date startDate;
+
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
 
 
     //  Constructors

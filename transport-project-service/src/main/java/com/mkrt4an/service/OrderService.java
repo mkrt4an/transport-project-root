@@ -41,17 +41,6 @@ public class OrderService {
         this.driverDao = driverDao;
     }
 
-    // Exceptions
-//    public class NoSuitableDrversException extends Exception {
-//        NoSuitableDriversException() {
-//        }
-//    }
-
-//    public class NoSuitableTruckException extends Exception {
-//        NoSuitableTruckException() {
-//        }
-//    }
-
     /**
      * Find by id.
      *
@@ -70,20 +59,17 @@ public class OrderService {
      * @return the found entity instance
      */
     public OrderEntity findById(Integer id) {
-//        OrderDao orderDao = new OrderDao(getEntityManager());
         return orderDao.findOrderById(id);
     }
 
     // Update order
     @Transactional
     public void update(OrderEntity orderEntity) throws TransportProjectException{
-        validateOrderForDriverList(orderEntity);
         orderDao.updateOrder(orderEntity);
     }
 
     //Find all orders
     public List<OrderEntity> findAll() {
-//        OrderDao orderDao = new OrderDao(getEntityManager());
         return orderDao.getAllOrders();
     }
 
@@ -190,7 +176,7 @@ public class OrderService {
      * @return Doesn't return anything -- throws exception if failed.
      * @throws ServiceValidationException
      */
-    private void validateOrderForDriverList(OrderEntity orderEntity) throws ServiceValidationException {
+    public void validateOrderForDriverList(OrderEntity orderEntity) throws ServiceValidationException {
 
         if (orderEntity.getDriverList() == null || orderEntity.getDriverList().isEmpty()) {
             throw new ServiceValidationException("Driver list is not set or empty.");
@@ -216,22 +202,6 @@ public class OrderService {
         OrderEntity orderEntity = orderDao.findOrderById(Integer.parseInt(id));
         return orderDao.deleteOrder(orderEntity);
     }
-
-
-//    /**
-//     * Add new blank order.
-//     *
-//     * @return order id
-//     */
-//    public Integer addOrderBlank() {
-//        //Create order entity
-//        OrderEntity orderEntity = new OrderEntity();
-//        // return new order id
-//        return orderDao.createOrder(orderEntity);
-//    }
-
-
-
 
     /**
      * Add new order from DTO model.
