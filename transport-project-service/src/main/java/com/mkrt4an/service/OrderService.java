@@ -65,6 +65,7 @@ public class OrderService {
     // Update order
     @Transactional
     public void update(OrderEntity orderEntity) throws TransportProjectException{
+        orderEntity.setStartDate(new Date());
         orderDao.updateOrder(orderEntity);
     }
 

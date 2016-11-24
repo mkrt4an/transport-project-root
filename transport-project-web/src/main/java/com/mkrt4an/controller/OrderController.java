@@ -26,7 +26,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServlet;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -135,7 +134,6 @@ public class OrderController extends HttpServlet {
         orderEntity.assignDriverList(driverEntityList);
 
         orderService.validateOrderForDriverList(orderEntity);
-        orderEntity.setStartDate(new Date());
 
         orderService.update(orderEntity);
 

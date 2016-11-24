@@ -38,11 +38,11 @@
             <br>
             <br>
             Name:&nbsp;&nbsp;
-            <input id="cargoName" type="text" required name="name"  title="name"/>
+            <input id="cargoName" type="text" required name="name"  title="name" placeholder="enter cargo name"/>
             <br>
             <br>
             Weight:
-            <input id="cargoWeight" type="number" required name="weight"  title="weight"/>
+            <input id="cargoWeight" type="number" required name="weight"  title="weight" placeholder="enter cargo weight, kg"/>
             <br>
             <br>
             <input id="addCargo" type="submit" value="Save cargo" />

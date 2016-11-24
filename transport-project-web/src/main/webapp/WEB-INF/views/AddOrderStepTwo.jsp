@@ -1,5 +1,8 @@
 <%@include file="header.jsp" %>
 
+<h1>Assign truck to order</h1><br>
+
+
 <form action="/order/add/set-truck-confirm" method="get">
     <input type="hidden" name="orderId" value="${orderId}" />
 
