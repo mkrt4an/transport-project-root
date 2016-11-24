@@ -97,7 +97,7 @@ public class OrderController extends HttpServlet {
     @RequestMapping(value = "/order/add/set-truck-confirm", method = RequestMethod.GET)
     public ModelAndView setTruckToOrderConfirm(Model model,
                                                @RequestParam("truckId") String truckId,
-                                               @RequestParam("orderId") String orderId) {
+                                               @RequestParam("orderId") String orderId) throws TransportProjectException{
 
         OrderEntity orderEntity = orderService.findById(orderId);
         orderEntity.setCurrentTruck(truckService.findById(truckId));

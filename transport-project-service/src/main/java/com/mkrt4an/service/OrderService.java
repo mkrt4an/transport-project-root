@@ -120,16 +120,11 @@ public class OrderService {
 
 
     // Get driver list suitable for this order
-    public List<DriverEntity> getSuitableDriverList(OrderEntity orderEntity)
-//            throws NoSuitableDrversException
-
-    {
+    public List<DriverEntity> getSuitableDriverList(OrderEntity orderEntity) throws TransportProjectException {
 //        CityService cityService = new CityService(); TODO: 22.11.2016
-
 //        DriverDao driverDao = new DriverDao(getEntityManager());
 
         List<DriverEntity> suitableDrivetList = new ArrayList<DriverEntity>();
-
         List<DriverEntity> driverEntityList = driverDao.getAllDrivers();
 
         for (DriverEntity driverEntity : driverEntityList) {
@@ -144,6 +139,8 @@ public class OrderService {
             }
         }
 
+        if(suitableDrivetList == null || suitableDrivetList.isEmpty()) {
+            throw new ServiceValidationException(" No suitable drivers found for this order.");}
         return suitableDrivetList;
     }
 
@@ -200,6 +197,7 @@ public class OrderService {
      * Delete order by id
      * @param id order id
      */
+    @Transactional
     public Integer deleteById(String id) {
         OrderEntity orderEntity = orderDao.findOrderById(Integer.parseInt(id));
         return orderDao.deleteOrder(orderEntity);
@@ -328,6 +326,8 @@ public class OrderService {
                 routePointDao.createRoutePoint(routePointEntity);
                 log.debug("persist routePointEntity: " + routePointEntity);
             }
+
+            validateOrderForRpList(orderEntity);
 
             // persist order
             Integer orderId = orderDao.createOrder(orderEntity);
