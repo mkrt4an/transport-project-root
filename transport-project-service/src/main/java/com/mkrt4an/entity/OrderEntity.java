@@ -7,6 +7,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -41,6 +42,10 @@ public class OrderEntity implements Serializable {
     @ManyToOne
     @JoinColumn(name = "truck_id")
     private TruckEntity currentTruck;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "startDate", nullable = true)
+    private Date startDate;
 
 
     //  Constructors
