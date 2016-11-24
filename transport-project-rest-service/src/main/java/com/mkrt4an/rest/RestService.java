@@ -61,7 +61,7 @@ public class RestService {
         }
 
         driverEntity.setStatus(status);
-        driverService.update(driverEntity);
+        driverService.updateDriverStatusAndWorkHours(driverEntity);
         log.info(driverEntity);
 
         return new ResponseEntity<DriverEntity>(driverEntity, HttpStatus.OK);

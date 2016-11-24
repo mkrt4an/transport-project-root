@@ -6,6 +6,7 @@ import com.mkrt4an.dao.OrderDao;
 import com.mkrt4an.entity.DriverEntity;
 import com.mkrt4an.exception.ServiceValidationException;
 import com.mkrt4an.exception.TransportProjectException;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +18,8 @@ import java.util.List;
 @Service
 @Transactional
 public class DriverService {
+
+    private static final Logger log = Logger.getLogger(DriverService.class);
 
     private final DriverDao driverDao;
     private final CityDao cityDao;
@@ -116,6 +119,15 @@ public class DriverService {
     public Integer update(DriverEntity driverEntity) throws TransportProjectException {
         validateDriver(driverEntity);
         diffInHours(new Date(), orderDao.findOrderById(driverEntity.getOrder().getId()).getStartDate());
+        return driverDao.updateDriver(driverEntity);
+    }
+
+    public Integer updateDriverStatusAndWorkHours(DriverEntity driverEntity) throws TransportProjectException {
+        validateDriver(driverEntity);
+        Float time = diffInHours(new Date(), orderDao.findOrderById(driverEntity.getOrder().getId()).getStartDate());
+        Integer i = driverEntity.getWorkedHours();
+        driverEntity.setWorkedHours(i + time.intValue());
+        log.warn(driverEntity);
         return driverDao.updateDriver(driverEntity);
     }
 
