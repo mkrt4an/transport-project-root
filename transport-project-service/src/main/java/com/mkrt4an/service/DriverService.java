@@ -3,6 +3,7 @@ package com.mkrt4an.service;
 import com.mkrt4an.dao.CityDao;
 import com.mkrt4an.dao.DriverDao;
 import com.mkrt4an.entity.DriverEntity;
+import com.mkrt4an.exception.ServiceValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +23,32 @@ public class DriverService {
         this.driverDao = driverDao;
         this.cityDao = cityDao;
     }
+
+
+    /**
+     * Check if driver has empty fields that should not be empty.
+     * @param driverEntity {@link DriverEntity}
+     * @return Doesn't return anything -- throws exception if failed.
+     * @throws ServiceValidationException
+     */
+    private void validateDriverForEmptyFields(DriverEntity driverEntity) throws ServiceValidationException {
+        if (driverEntity.getFirstName() == null || driverEntity.getFirstName().isEmpty()) {
+            throw new ServiceValidationException("FirstName is not set or empty.");
+
+        } else if (driverEntity.getLastName().isEmpty()) {
+            throw new ServiceValidationException("LastName size is not set or empty.");
+
+        } else if (driverEntity.getWorkedHours() == null || driverEntity.getWorkedHours() < 0) {
+            throw new ServiceValidationException("WorkedHours is not set or can't be 0 or negative.");
+
+        } else if (driverEntity.getStatus() < 0 || driverEntity.getStatus() > 2) {
+            throw new ServiceValidationException("Status is not less 0 or greater 2.");
+
+        } else if (driverEntity.getCurrentCity() == null) {
+            throw new ServiceValidationException("City is not set.");
+        }
+    }
+
 
     //Add new
     public Integer addNew(String firstName, String lastName, Integer workedHours, Integer status, Integer cityId) {

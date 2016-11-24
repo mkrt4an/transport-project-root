@@ -2,13 +2,12 @@ package com.mkrt4an.dao;
 
 import com.mkrt4an.entity.CargoEntity;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceContextType;
-//import javax.transaction.Transactional;
 import java.util.List;
+
+//import javax.transaction.Transactional;
 
 @SuppressWarnings("JpaQlInspection")
 @Repository
@@ -36,7 +35,7 @@ public class CargoDao {
     }
 
     //Create
-    public Integer createCargo(CargoEntity entity) {
+    public Integer createCargo(CargoEntity entity)  {
         em.persist(entity);
         return entity.getId();
     }

@@ -1,7 +1,8 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@include file="header.jsp" %>
 
 <%--<jsp:include page="../GlobalHeader.jsp">--%>
-	<%--<jsp:param name="title" value="${errorCode}" />--%>
+    <%--<jsp:param name="title" value="${errorCode}" />--%>
 <%--</jsp:include>--%>
 
 <div class="container">
@@ -19,9 +20,9 @@
 			</c:if>
 		</ul>
 
-		<div class="panel-footer">
-			<a href="${pageContext.request.contextPath}">Home</a>
-		</div>
+		<%--<div class="panel-footer">--%>
+			<%--<a href="${pageContext.request.contextPath}">Home</a>--%>
+		<%--</div>--%>
 	</div>
 	
 </div>

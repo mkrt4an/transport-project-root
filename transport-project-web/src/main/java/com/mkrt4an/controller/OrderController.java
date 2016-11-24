@@ -4,19 +4,18 @@ package com.mkrt4an.controller;
   Created by 123 on 04.10.2016.
  */
 
-import com.fasterxml.jackson.core.JsonGenerationException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.mkrt4an.dto.OrderDTO;
-import com.mkrt4an.entity.*;
+import com.mkrt4an.entity.DriverEntity;
+import com.mkrt4an.entity.OrderEntity;
+import com.mkrt4an.exception.TransportProjectException;
 import com.mkrt4an.service.DriverService;
 import com.mkrt4an.service.OrderService;
 import com.mkrt4an.service.TruckService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -59,7 +58,7 @@ public class OrderController extends HttpServlet {
 
 //    @Transactional
     @RequestMapping(value = "/order/add/test", method = RequestMethod.GET)
-    public ModelAndView add(Model model, @RequestParam("order") String order ) {
+    public ModelAndView add(Model model, @RequestParam("order") String order ) throws TransportProjectException{
 
         ObjectMapper objectMapper = new ObjectMapper();
         //Set pretty printing of json

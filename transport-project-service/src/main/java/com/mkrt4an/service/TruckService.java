@@ -1,7 +1,9 @@
 package com.mkrt4an.service;
 
-import com.mkrt4an.dao.*;
+import com.mkrt4an.dao.CityDao;
+import com.mkrt4an.dao.TruckDao;
 import com.mkrt4an.entity.TruckEntity;
+import com.mkrt4an.exception.ServiceValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +34,35 @@ public class TruckService {
         this.truckDao = truckDao;
         this.cityDao = cityDao;
     }
+
+    /**
+     * Check if truck has empty fields that should not be empty.
+     * @param truckEntity {@link TruckEntity}
+     * @return Doesn't return anything -- throws exception if failed.
+     * @throws ServiceValidationException
+     */
+    private void validateTruckForEmptyFields(TruckEntity truckEntity) throws ServiceValidationException {
+        if (truckEntity.getRegNumber() == null || truckEntity.getRegNumber().isEmpty()) {
+            throw new ServiceValidationException("RegNumber is not set.or empty.");
+
+        } else if (truckEntity.getDutySize() == null) {
+            throw new ServiceValidationException("Duty size is not set.");
+        } else if (truckEntity.getDutySize() <= 0 || truckEntity.getDutySize() > 10) {
+            throw new ServiceValidationException("Duty size can't be 0 or negative or greater 10.");
+
+        } else if (truckEntity.getCapacity() == null) {
+            throw new ServiceValidationException("Capacity is not set.");
+        } else if (truckEntity.getCapacity() <= 0) {
+            throw new ServiceValidationException("Capacity can't be 0 or negative.");
+
+        } else if (truckEntity.getCurrentCity() == null || truckEntity.getCurrentCity().getId() == 0) {
+            throw new ServiceValidationException("City is not set.");
+
+        } else if (truckEntity.getStatus() == null || truckEntity.getStatus() < 0 || truckEntity.getStatus() > 2) {
+            throw new ServiceValidationException("Truck status is not set or less 0 or greater 2.");
+        }
+    }
+
 
     //Add new
     public Integer addNew(Integer dutySize, Integer capacity, Integer status, String regNumber, Integer cityId) {
