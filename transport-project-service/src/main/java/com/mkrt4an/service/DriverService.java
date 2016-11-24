@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -112,5 +113,21 @@ public class DriverService {
     public Integer update(DriverEntity driverEntity) throws TransportProjectException {
         validateDriver(driverEntity);
         return driverDao.updateDriver(driverEntity);
+    }
+
+
+
+    /**
+     * Calculate difference in hours between two Date objects.
+     * Will return negative if dates not in chronological order.
+     *
+     * @param earlierDate
+     * @param laterDate
+     * @return time in hours
+     */
+    public static float diffInHours(Date earlierDate, Date laterDate) {
+        long resultMills = laterDate.getTime() - earlierDate.getTime();
+        float resultHours = (float) resultMills / 1000 / 60 / 60;
+        return resultHours;
     }
 }
