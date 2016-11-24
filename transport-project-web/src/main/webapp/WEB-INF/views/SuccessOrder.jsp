@@ -64,6 +64,7 @@
                 <%--<c:out value="${item.status}"/>--%>
             <c:if test="${order.status == 0}"><c:out value="not done"/></c:if>
             <c:if test="${order.status == 1}"><c:out value="done"/></c:if>
+            <c:if test="${item.status == 2}"><c:out value="draft"/></c:if>
         </td>
         <td>
             <a href=/order/add/set-truck?id=${order.id}>assign truck and drivers</a>

@@ -66,6 +66,7 @@ public class OrderService {
     @Transactional
     public void update(OrderEntity orderEntity) throws TransportProjectException{
         orderEntity.setStartDate(new Date());
+        if(!orderEntity.getDriverList().isEmpty()){orderEntity.setStatus(0);} // working
         orderDao.updateOrder(orderEntity);
     }
 
@@ -234,6 +235,7 @@ public class OrderService {
 
             // set status in order
             Integer status = Integer.parseInt(orderDTO.getStatus());
+            status = 2; // draft // TODO: 24.11.2016
             orderEntity.setStatus(status);
             log.debug("set status to orderEntity " + orderEntity);
 
