@@ -63,20 +63,20 @@
             <c:if test="${item.status == 2}"><c:out value="drive"/></c:if>
         </td>
         <td>
-            <c:if test="${item.order == null}">
+            <%--<c:if test="${item.order == null}">--%>
                 <a href=${pageContext.request.contextPath}/driver/update?id=${item.id}>update</a>
-            </c:if>
-            <c:if test="${item.order != null}">
-                -
-            </c:if>
+            <%--</c:if>--%>
+            <%--<c:if test="${item.order != null}">--%>
+                <%-----%>
+            <%--</c:if>--%>
         </td>
         <td>
-            <c:if test="${item.order == null}">
+            <%--<c:if test="${item.order == null}">--%>
                 <a href=${pageContext.request.contextPath}/driver/delete?id=${item.id} onclick="return confirm('Are you sure?')">delete</a>
-            </c:if>
-            <c:if test="${item.order != null}">
-                -
-            </c:if>
+            <%--</c:if>--%>
+            <%--<c:if test="${item.order != null}">--%>
+                <%-----%>
+            <%--</c:if>--%>
         </td>
 
         </c:forEach>

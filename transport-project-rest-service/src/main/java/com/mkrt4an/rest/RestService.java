@@ -48,7 +48,7 @@ public class RestService {
 
     @RequestMapping(value = "/rest/driver/{id}", method = RequestMethod.PUT)
     public ResponseEntity<DriverEntity> updateDriver(@PathVariable("id") Integer id,
-                                                     @RequestParam("status") Integer status) {
+                                                     @RequestParam("status") Integer status) throws TransportProjectException{
 
         System.out.println("id = " + id + '\n' + "status = " + status);
 

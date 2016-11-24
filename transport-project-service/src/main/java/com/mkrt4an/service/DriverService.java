@@ -94,7 +94,7 @@ public class DriverService {
 
     //    Update
     public Integer update(Integer id,
-                          String firstName, String lastName, Integer workedHours, Integer status, Integer cityId) {
+                          String firstName, String lastName, Integer workedHours, Integer status, Integer cityId) throws TransportProjectException{
 
         DriverEntity driverEntity;
         driverEntity = driverDao.findDriverById(id);
@@ -105,10 +105,12 @@ public class DriverService {
         driverEntity.setStatus(status);
         driverEntity.setCurrentCity(cityDao.findCityById(cityId));
 
+        validateDriver(driverEntity);
         return driverDao.updateDriver(driverEntity);
     }
 
-    public Integer update(DriverEntity driverEntity){
+    public Integer update(DriverEntity driverEntity) throws TransportProjectException {
+        validateDriver(driverEntity);
         return driverDao.updateDriver(driverEntity);
     }
 }

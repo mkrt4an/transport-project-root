@@ -3,7 +3,7 @@
 <h1>Add driver page</h1><br>
 
 <form action="${pageContext.request.contextPath}/driver/AddNewDriverServlet" method="get">
-    <fieldset>
+    <%--<fieldset>--%>
         <input type="hidden" name="id" value="${driver.id}"/>
 
         First name:<br>
@@ -56,7 +56,7 @@
 
         <input type="submit" name="update" value="Submit"/>
         <input type="button" name="Cancel" value="Back" onclick="location.href='/driver/getAll'"/>
-    </fieldset>
+    <%--</fieldset>--%>
 </form>
 
 <%@include file="footer.jsp" %>

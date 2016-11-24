@@ -1,4 +1,3 @@
-
 <%@include file="header.jsp" %>
 
 <h1>All trucks page</h1><br>
@@ -60,20 +59,20 @@
             <c:if test="${item.status == 1}"><c:out value="ok"/></c:if>
         </td>
         <td>
-            <c:if test="${item.orders == null}">
-            <a href=${pageContext.request.contextPath}/truck/update?id=${item.id}>update</a>
-            </c:if>
-            <c:if test="${item.orders != null}">
-                -
-            </c:if>
+            <%--<c:if test="${item.orders == null}">--%>
+                <a href=${pageContext.request.contextPath}/truck/update?id=${item.id}>update</a>
+            <%--</c:if>--%>
+            <%--<c:if test="${item.orders != null}">--%>
+                <%-----%>
+            <%--</c:if>--%>
         </td>
         <td>
-            <c:if test="${item.orders == null}">
-            <a href=${pageContext.request.contextPath}/truck/delete?id=${item.id} onclick="return confirm('Are you sure?')">delete</a>
-            </c:if>
-            <c:if test="${item.orders != null}">
-                -
-            </c:if>
+            <%--<c:if test="${item.orders == null}">--%>
+                <a href=${pageContext.request.contextPath}/truck/delete?id=${item.id} onclick="return confirm('Are you sure?')">delete</a>
+            <%--</c:if>--%>
+            <%--<c:if test="${item.orders != null}">--%>
+                <%-----%>
+            <%--</c:if>--%>
         </td>
 
         </c:forEach>
