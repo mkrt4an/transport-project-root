@@ -35,14 +35,14 @@ public class RestService {
     @RequestMapping("/rest/driver/{id}")
     public DriverEntity getDriverById(@PathVariable("id") Integer id) {
         DriverEntity driverEntity = driverService.findById(id);
-        System.out.println(driverEntity);
+        log.debug(driverEntity);
         return driverEntity;
     }
 
     @RequestMapping("/rest/driver/")
     public List<DriverEntity> getAllDrivers() {
         List<DriverEntity> driverEntityList = driverService.findAllDrivers();
-        System.out.println(driverEntityList);
+        log.debug(driverEntityList);
         return driverEntityList;
     }
 
@@ -50,19 +50,19 @@ public class RestService {
     public ResponseEntity<DriverEntity> updateDriver(@PathVariable("id") Integer id,
                                                      @RequestParam("status") Integer status) throws TransportProjectException{
 
-        System.out.println("id = " + id + '\n' + "status = " + status);
+        log.info("id = " + id + '\n' + "status = " + status);
 
         DriverEntity driverEntity = driverService.findById(id);
-        System.out.println(driverEntity);
+        log.info(driverEntity);
 
         if (driverEntity == null) {
-            System.out.println("Cargo with id " + id + " not found");
+            log.warn("Driver with id " + id + " not found");
             return new ResponseEntity<DriverEntity>(HttpStatus.NOT_FOUND);
         }
 
         driverEntity.setStatus(status);
         driverService.update(driverEntity);
-        System.out.println(driverEntity);
+        log.info(driverEntity);
 
         return new ResponseEntity<DriverEntity>(driverEntity, HttpStatus.OK);
     }
@@ -122,7 +122,6 @@ public class RestService {
         System.out.println("id = " + id + '\n' + "status = " + status);
 
         CargoEntity cargoEntity = cargoService.findById(id);
-        System.out.println(cargoEntity);
 
         if (cargoEntity == null) {
             System.out.println("Cargo with id " + id + " not found");
@@ -131,7 +130,6 @@ public class RestService {
 
         cargoEntity.setStatus(status);
         cargoService.update(cargoEntity);
-        System.out.println(cargoEntity);
 
         return new ResponseEntity<CargoEntity>(cargoEntity, HttpStatus.OK);
     }

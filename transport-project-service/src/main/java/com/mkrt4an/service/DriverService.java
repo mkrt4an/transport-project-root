@@ -2,6 +2,7 @@ package com.mkrt4an.service;
 
 import com.mkrt4an.dao.CityDao;
 import com.mkrt4an.dao.DriverDao;
+import com.mkrt4an.dao.OrderDao;
 import com.mkrt4an.entity.DriverEntity;
 import com.mkrt4an.exception.ServiceValidationException;
 import com.mkrt4an.exception.TransportProjectException;
@@ -19,11 +20,13 @@ public class DriverService {
 
     private final DriverDao driverDao;
     private final CityDao cityDao;
+    private final OrderDao orderDao;
 
     @Autowired
-    public DriverService(DriverDao driverDao, CityDao cityDao) {
+    public DriverService(DriverDao driverDao, CityDao cityDao, OrderDao orderDao) {
         this.driverDao = driverDao;
         this.cityDao = cityDao;
+        this.orderDao = orderDao;
     }
 
 
@@ -112,6 +115,7 @@ public class DriverService {
 
     public Integer update(DriverEntity driverEntity) throws TransportProjectException {
         validateDriver(driverEntity);
+        diffInHours(new Date(), orderDao.findOrderById(driverEntity.getOrder().getId()).getStartDate());
         return driverDao.updateDriver(driverEntity);
     }
 
@@ -127,7 +131,8 @@ public class DriverService {
      */
     public static float diffInHours(Date earlierDate, Date laterDate) {
         long resultMills = laterDate.getTime() - earlierDate.getTime();
-        float resultHours = (float) resultMills / 1000 / 60 / 60;
+//        float resultHours = (float) resultMills / 1000 / 60 / 60;
+        float resultHours = (float) resultMills / 1000 / 60; // TODO: 24.11.2016
         return resultHours;
     }
 }

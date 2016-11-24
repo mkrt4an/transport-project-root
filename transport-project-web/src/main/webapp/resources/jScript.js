@@ -278,49 +278,75 @@ $(function() {
 //===========================
 // Disable SAVE CARGO button
 //===========================
-$(function() {
+// $(function() {
+//
+//     $('#addCargo').attr('disabled', true);
+//
+//     $("#cargoName").on("change", function(){
+//         var value = $.trim($("#cargoName").val());
+//
+//         if(value.length==0) {
+//             $('#addCargo').attr('disabled', true);
+//         }
+//         else {
+//             $('#addCargo').attr('disabled', false);
+//         }
+//     });
+//
+//     $("#cargoWeight").on("change", function(){
+//         var value = $.trim($("#cargoWeight").val());
+//
+//         if(value.length==0) {
+//             $('#addCargo').attr('disabled', true);
+//         }
+//         else {
+//             $('#addCargo').attr('disabled', false);
+//         }
+//     });
+// });
 
-    $('#addCargo').attr('disabled', true);
-
-    $("#cargoName").on("change", function(){
-        var value = $.trim($("#cargoName").val());
-
-        if(value.length==0) {
-            $('#addCargo').attr('disabled', true);
-        }
-        else {
-            $('#addCargo').attr('disabled', false);
-        }
-    });
-
-    $("#cargoWeight").on("change", function(){
-        var value = $.trim($("#cargoWeight").val());
-
-        if(value.length==0) {
-            $('#addCargo').attr('disabled', true);
-        }
-        else {
-            $('#addCargo').attr('disabled', false);
-        }
-    });
-
-});
+setInterval(function () {
+    if (($.trim($("#cargoName").val())).length > 0
+        &&
+        ($.trim($("#cargoWeight").val())).length > 0)
+    {
+        $("#addCargo").prop('disabled', false);
+    } else {
+        $("#addCargo").prop('disabled', true);
+    }
+}, 500);
 
 //===========================
 // Disable SAVE RP button
 //===========================
 // $(function () {
-//     $('#addRp').attr('disabled', true);
+//     $('#addRp').prop('disabled', true);
 //     $("#cityList").on("change", function () {
 //         var value = $.trim($("#cityList").val());
 //         if (value.length == 0) {
-//             $('#addRp').attr('disabled', true);
+//             $('#addRp').prop('disabled', true);
 //         }
 //         else {
-//             $('#addRp').attr('disabled', false);
+//             $('#addRp').prop('disabled', false);
 //         }
 //     });
 // });
+setInterval(function () {
+    if (
+        !$('#cityList').val()
+        // ||
+    // ($ordinal == 0) ||
+    //($cargoCount!=0))
+    // $deliverListToNextPage.length != 0
+    )
+    {
+        //alert("empty!");
+        $("#addRp").prop('disabled', true);
+    } else {
+        $("#addRp").prop('disabled', false);
+    }
+}, 500);
+
 
 
 //========================================

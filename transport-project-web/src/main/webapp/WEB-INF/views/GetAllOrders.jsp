@@ -67,14 +67,14 @@
             <c:if test="${item.status == 2}"><c:out value="draft"/></c:if>
         </td>
         <td>
-            <c:if test="${item.status != 0}">
+            <%--<c:if test="${item.status != 0}">--%>
                 <a href=${pageContext.request.contextPath}/order/update?id=${item.id}>update</a>
-            </c:if>
+            <%--</c:if>--%>
         </td>
         <td>
-            <c:if test="${item.status != 0}">
+            <%--<c:if test="${item.status != 0}">--%>
                 <a href=${pageContext.request.contextPath}/order/delete?id=${item.id} onclick="return confirm('Are you sure?')">delete</a>
-            </c:if>
+            <%--</c:if>--%>
         </td>
 
         </c:forEach>

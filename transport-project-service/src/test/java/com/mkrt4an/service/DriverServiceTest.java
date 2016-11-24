@@ -2,6 +2,7 @@ package com.mkrt4an.service;
 
 import com.mkrt4an.dao.CityDao;
 import com.mkrt4an.dao.DriverDao;
+import com.mkrt4an.dao.OrderDao;
 import com.mkrt4an.entity.CityEntity;
 import com.mkrt4an.entity.DriverEntity;
 import org.junit.Assert;
@@ -21,13 +22,16 @@ public class DriverServiceTest {
 
     private DriverDao driverDaoMock;
     private CityDao cityDaoMock;
+    private OrderDao orderDaoMock;
+
     private DriverService driverService;
 
     @Before
     public void setUp() throws Exception {
             driverDaoMock = mock(DriverDao.class);
             cityDaoMock = mock(CityDao.class);
-            driverService = new DriverService(driverDaoMock, cityDaoMock);
+            orderDaoMock = mock(OrderDao.class);
+            driverService = new DriverService(driverDaoMock, cityDaoMock, orderDaoMock);
     }
 
     @Test
